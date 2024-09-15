@@ -1,34 +1,43 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AppointmentSystem.Models
+namespace AppointmentSystem.Models;
+
+public class Appointment
 {
-    public class Appointment
-    {
-        public int AppointmentId { get; set; }
+    [Key]
+    public long AppointmentId { get; set; }
 
-        public int PatientId { get; set; }
-        public Patient Patient { get; set; }
+    [Required]
+    public long PatientId { get; set; }
+    public Patient Patient { get; set; }
 
-        public int DoctorId { get; set; }
-        public Doctor Doctor { get; set; }
+    [Required]
+    public long DoctorId { get; set; }
+    public Doctor Doctor { get; set; }
 
-        public int ClinicId { get; set; }
-        public Clinic Clinic { get; set; }
+    [Required]
+    public long ClinicId { get; set; }
+    public Clinic Clinic { get; set; }
 
-        [Required]
-        public DateTime AppointmentDate { get; set; }
+    [Required]
+    [DataType(DataType.Date)]
+    public DateTime AppointmentDate { get; set; }
 
-        [Required]
-        public TimeSpan AppointmentTime { get; set; }
+    [Required]
+    [DataType(DataType.Time)]
+    public TimeSpan AppointmentTime { get; set; }
 
-        public AppointmentStatus Status { get; set; }
-    }
+    [Required]
+    [EnumDataType(typeof(AppointmentStatus))]
+    public AppointmentStatus Status { get; set; }
 
-    public enum AppointmentStatus
-    {
-        Scheduled,
-        Confirmed,
-        Cancelled,
-        Completed
-    }
+    public string? Notes { get; set; }
+}
+
+public enum AppointmentStatus
+{
+    Scheduled,
+    Confirmed,
+    Cancelled,
+    Completed
 }

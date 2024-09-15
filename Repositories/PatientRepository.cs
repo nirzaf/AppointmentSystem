@@ -1,5 +1,6 @@
 using AppointmentSystem.Data;
 using AppointmentSystem.Models;
+using AppointmentSystem.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace AppointmentSystem.Repositories;

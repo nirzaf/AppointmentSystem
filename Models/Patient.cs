@@ -1,34 +1,43 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AppointmentSystem.Models
+namespace AppointmentSystem.Models;
+
+public class Patient
 {
-    public class Patient
-    {
-        public int PatientId { get; set; }
+    [Key]
+    public long PatientId { get; set; }
 
-        [Required]
-        public string FirstName { get; set; }
+    [Required]
+    [StringLength(50)]
+    public string FirstName { get; set; }
 
-        [Required]
-        public string LastName { get; set; }
+    [Required]
+    [StringLength(50)]
+    public string LastName { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+    [DataType(DataType.Date)]
+    public DateTime DateOfBirth { get; set; }
 
-        public Gender Gender { get; set; }
+    [Required]
+    public Gender Gender { get; set; }
 
-        public string PhoneNumber { get; set; }
+    [Phone]
+    [StringLength(20)]
+    public string? PhoneNumber { get; set; }
 
-        public string Email { get; set; }
+    [EmailAddress]
+    [StringLength(100)]
+    public string? Email { get; set; }
 
-        public string Address { get; set; }
+    [StringLength(200)]
+    public string? Address { get; set; }
 
-        public ICollection<Appointment> Appointments { get; set; }
-    }
+    public ICollection<Appointment> Appointments { get; set; }
+}
 
-    public enum Gender
-    {
-        Male,
-        Female,
-        Other
-    }
+public enum Gender
+{
+    Male,
+    Female,
+    Other
 }

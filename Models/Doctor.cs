@@ -1,23 +1,33 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AppointmentSystem.Models
+namespace AppointmentSystem.Models;
+
+public class Doctor
 {
-    public class Doctor
-    {
-        public int DoctorId { get; set; }
+    [Key]
+    public long DoctorId { get; set; }
 
-        [Required]
-        public string FirstName { get; set; }
+    [Required]
+    [StringLength(50)]
+    [Display(Name = "First Name")]
+    public string FirstName { get; set; } = null!;
 
-        [Required]
-        public string LastName { get; set; }
+    [Required]
+    [StringLength(50)]
+    [Display(Name = "Last Name")]
+    public string LastName { get; set; } = null!;
 
-        public string Specialization { get; set; }
+    [Required]
+    [StringLength(100)]
+    public string Specialization { get; set; } = null!;
 
-        public string PhoneNumber { get; set; }
+    [Phone]
+    [Display(Name = "Phone Number")]
+    public string? PhoneNumber { get; set; }
 
-        public string Email { get; set; }
+    [EmailAddress]
+    [StringLength(100)]
+    public string? Email { get; set; }
 
-        public ICollection<Appointment> Appointments { get; set; }
-    }
+    public ICollection<Appointment> Appointments { get; set; } = null!;
 }
