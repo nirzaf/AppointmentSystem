@@ -3,7 +3,7 @@ using AppointmentSystem.Models;
 using AppointmentSystem.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppointmentSystem.Repositories;
+namespace AppointmentSystem.Repositories.Implementation;
 
 public class ClinicRepository(ClinicDbContext context, ILogger<ClinicRepository> logger) : IClinicRepository
 {

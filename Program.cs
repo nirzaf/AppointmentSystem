@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using AppointmentSystem.Data;
 using AppointmentSystem.Repositories;
+using AppointmentSystem.Repositories.Implementation;
 using AppointmentSystem.Repositories.Interface;
 using Serilog;
 
