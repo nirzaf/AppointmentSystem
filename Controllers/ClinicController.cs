@@ -10,10 +10,10 @@ public class ClinicController(IClinicRepository clinicRepository, ILogger<Clinic
     : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Clinic>>> GetAllClinics()
+    public async Task<ActionResult<IEnumerable<Clinic>>> GetAllClinics([FromQuery] int skip = 0, [FromQuery] int take = 10)
     {
-        logger.LogInformation("Getting all clinics");
-        var clinics = await clinicRepository.GetAllClinicsAsync();
+        logger.LogInformation("Getting clinics with pagination: Skip {Skip}, Take {Take}", skip, take);
+        var clinics = await clinicRepository.GetAllClinicsAsync(skip, take);
         logger.LogInformation("Retrieved {Count} clinics", clinics.Count());
         return Ok(clinics);
     }

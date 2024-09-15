@@ -8,15 +8,18 @@ namespace AppointmentSystem.Repositories.Implementation;
 public class AppointmentRepository(ClinicDbContext context, ILogger<AppointmentRepository> logger)
     : IAppointmentRepository
 {
-    public async Task<IEnumerable<Appointment?>> GetAllAppointmentsAsync()
+    public async Task<IEnumerable<Appointment?>> GetAllAppointmentsAsync(int skip = 0, int take = 100)
     {
         try
         {
-            return await context.Appointments.ToListAsync();
+            return await context.Appointments
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "An error occurred while getting all appointments");
+            logger.LogError(ex, "An error occurred while getting appointments");
             throw;
         }
     }

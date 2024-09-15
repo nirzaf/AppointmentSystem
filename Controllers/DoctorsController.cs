@@ -10,12 +10,14 @@ public class DoctorsController(IDoctorRepository doctorRepository, ILogger<Docto
     : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Doctor>>> GetAllDoctors()
+    public async Task<ActionResult<IEnumerable<Doctor>>> GetAllDoctors([FromQuery] int skip = 0, [FromQuery] int take = 10)
     {
-        logger.LogInformation("Getting all doctors");
+        logger.LogInformation("Getting doctors with skip: {Skip} and take: {Take}", skip, take);
         var doctors = await doctorRepository.GetAllDoctorsAsync();
-        logger.LogInformation("Retrieved {Count} doctors", doctors.Count());
-        return Ok(doctors);
+        var enumerable = doctors as Doctor[] ?? doctors.ToArray();
+        var result = enumerable.Skip(skip).Take(take);
+        logger.LogInformation("Retrieved {Count} doctors", result.Count());
+        return Ok(result);
     }
 
     [HttpGet("{id:long}")]

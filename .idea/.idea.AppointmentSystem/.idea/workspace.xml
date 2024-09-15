@@ -4,18 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8070862a-266b-4920-9ae5-1887f6f12786" name="Changes" comment="feat: added launch profiles for IIS Express, http, and https">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.AppointmentSystem/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="8070862a-266b-4920-9ae5-1887f6f12786" name="Changes" comment="feat: move repositories to implementation folder">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AppointmentSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AppointmentSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClinicDb.db" beforeDir="false" afterPath="$PROJECT_DIR$/ClinicDb.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClinicDb.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/ClinicDb.db-shm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClinicDb.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/ClinicDb.db-wal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/global.json" beforeDir="false" afterPath="$PROJECT_DIR$/global.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/AppointmentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/AppointmentController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/ClinicController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/ClinicController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/DoctorsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/DoctorsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/PatientController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/PatientController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Implementation/AppointmentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Implementation/AppointmentRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/Interface/IAppointmentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Interface/IAppointmentRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,7 +37,13 @@
     "accountId": "5ed92374-9d5c-4123-b852-5f0a5c3534cf"
   }
 }]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bfdd4a3d5ba5ce4354663c1f7a4f53879b8ef4bf2d7aa612d24c74965/LoggerConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Toolset" />
+  </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 5
 }]]></component>
@@ -44,6 +55,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.AppointmentSystem: IIS Express.executor": "Debug",
+    "HTTP Request.All in AppointmentSystem.executor": "Run",
     "RunOnceActivity.CodyAccountHistoryMigration": "true",
     "RunOnceActivity.CodyAccountsIdsRefresh": "true",
     "RunOnceActivity.CodyAssignOrphanedChatsToActiveAccount": "true",
@@ -131,7 +143,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726410570576</updated>
-      <workItem from="1726410570580" duration="397000" />
+      <workItem from="1726410570580" duration="1606000" />
     </task>
     <task id="LOCAL-00001" summary="feat(build): update web.config to remove handlers and locations for .NET Framework 4.7.2 and earlier versions">
       <option name="closed" value="true" />
@@ -149,7 +161,31 @@
       <option name="project" value="LOCAL" />
       <updated>1726410756923</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: added launch profiles for IIS Express, http, and https">
+      <option name="closed" value="true" />
+      <created>1726411131532</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1726411131532</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: Update target framework and CORS policy">
+      <option name="closed" value="true" />
+      <created>1726411409327</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1726411409327</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: move repositories to implementation folder">
+      <option name="closed" value="true" />
+      <created>1726411509688</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1726411509688</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +196,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat(build): update web.config to remove handlers and locations for .NET Framework 4.7.2 and earlier versions" />
     <MESSAGE value="feat: added launch profiles for IIS Express, http, and https" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added launch profiles for IIS Express, http, and https" />
+    <MESSAGE value="feat: Update target framework and CORS policy" />
+    <MESSAGE value="feat: move repositories to implementation folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: move repositories to implementation folder" />
   </component>
 </project>

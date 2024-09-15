@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AppointmentSystem.Models;
 using AppointmentSystem.Repositories.Interface;
-using Microsoft.Extensions.Logging;
 
 namespace AppointmentSystem.Controllers;
 
@@ -11,24 +10,36 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
     : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Appointment>>> GetAllAppointments()
+    public async Task<ActionResult<IEnumerable<Appointment>>> GetAllAppointments(int skip = 0, int take = 100)
     {
-        logger.LogInformation("Getting all appointments");
-        var appointments = await appointmentRepository.GetAllAppointmentsAsync();
-        logger.LogInformation("Retrieved {Count} appointments", appointments.Count());
-        return Ok(appointments);
+        logger.LogInformation("Getting appointments with skip: {Skip}, take: {Take}", skip, take);
+        try
+        {
+            var appointments = await appointmentRepository.GetAllAppointmentsAsync(skip, take);
+            logger.LogInformation("Retrieved {Count} appointments", appointments.Count());
+            return Ok(appointments);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while getting appointments");
+            return StatusCode(500, "An error occurred while processing your request.");
+        }
     }
 
     [HttpGet("{id:long}")]
+    [ResponseCache(Duration = 60, VaryByQueryKeys = ["id"])]
     public async Task<ActionResult<Appointment?>> GetAppointmentById(long id)
     {
         logger.LogInformation("Getting appointment with id: {Id}", id);
+        
         var appointment = await appointmentRepository.GetAppointmentByIdAsync(id);
+        
         if (appointment == null)
         {
             logger.LogWarning("Appointment with id: {Id} not found", id);
             return NotFound();
         }
+        
         logger.LogInformation("Retrieved appointment with id: {Id}", id);
         return Ok(appointment);
     }

@@ -10,13 +10,14 @@ public class PatientController(IPatientRepository patientRepository, ILogger<Pat
     : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Patient>>> GetAllPatients()
+    public async Task<ActionResult<IEnumerable<Patient>>> GetAllPatients([FromQuery] int skip = 0, [FromQuery] int take = 10)
     {
-        logger.LogInformation("Getting all patients");
+        logger.LogInformation("Getting patients with pagination: Skip {Skip}, Take {Take}", skip, take);
         var patients = await patientRepository.GetAllPatientsAsync();
-        var enumerable = patients as Patient[] ?? patients.ToArray();
+        var paginatedPatients = patients.Skip(skip).Take(take);
+        var enumerable = paginatedPatients as Patient[] ?? paginatedPatients.ToArray();
         logger.LogInformation("Retrieved {Count} patients", enumerable.Length);
-        return Ok(patients);
+        return Ok(enumerable);
     }
 
     [HttpGet("{id:long}")]

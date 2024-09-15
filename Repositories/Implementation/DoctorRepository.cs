@@ -7,11 +7,14 @@ namespace AppointmentSystem.Repositories.Implementation;
 
 public class DoctorRepository(ClinicDbContext context, ILogger<DoctorRepository> logger) : IDoctorRepository
 {
-    public async Task<IEnumerable<Doctor>> GetAllDoctorsAsync()
+    public async Task<IEnumerable<Doctor>> GetAllDoctorsAsync(int skip = 0, int take = 100)
     {
         try
         {
-            return await context.Doctors.ToListAsync();
+            return await context.Doctors
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
         }
         catch (Exception ex)
         {
@@ -19,7 +22,6 @@ public class DoctorRepository(ClinicDbContext context, ILogger<DoctorRepository>
             throw;
         }
     }
-
     public async Task<Doctor?> GetDoctorByIdAsync(long id)
     {
         try
