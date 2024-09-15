@@ -8,18 +8,17 @@ using Serilog.Sinks.MSSqlServer;
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure Serilog
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 Log.Logger = new LoggerConfiguration()
     .WriteTo.MSSqlServer(
-        connectionString: connectionString,
-        sinkOptions: new MSSqlServerSinkOptions { TableName = "Logs", AutoCreateSqlTable = true })
+        connectionString: "Server=(localdb)\\mssqllocaldb;Database=ClinicDb;Trusted_Connection=True;MultipleActiveResultSets=true",
+        sinkOptions: new MSSqlServerSinkOptions { TableName = "Logs", AutoCreateSqlTable = true },
+        restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information)
     .CreateLogger();
-
 builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddDbContext<ClinicDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -39,6 +38,15 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// Initialize seed data
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<ClinicDbContext>();
+    context.Database.Migrate();
+    SeedInitialData.Initialize(context);
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -48,8 +56,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
 app.Run();
 
 // Ensure to flush and close the log when the application shuts down
-Log.CloseAndFlush();app.Run();
+Log.CloseAndFlush();Log.CloseAndFlush();app.Run();
