@@ -1,6 +1,5 @@
 ﻿using AppointmentSystem.Models;
 using Bogus;
-using Microsoft.EntityFrameworkCore;
 
 namespace AppointmentSystem.Data;
 

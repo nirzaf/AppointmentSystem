@@ -5,45 +5,78 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AppointmentSystem.Repositories;
 
-public class ClinicRepository : IClinicRepository
+public class ClinicRepository(ClinicDbContext context, ILogger<ClinicRepository> logger) : IClinicRepository
 {
-    private readonly ClinicDbContext _context;
-
-    public ClinicRepository(ClinicDbContext context)
+    public async Task<IEnumerable<Clinic?>> GetAllClinicsAsync()
     {
-        _context = context;
+        try
+        {
+            return await context.Clinics.ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while getting all clinics");
+            throw;
+        }
     }
 
-    public async Task<IEnumerable<Clinic>> GetAllClinicsAsync()
+    public async Task<Clinic?> GetClinicByIdAsync(long id)
     {
-        return await _context.Clinics.ToListAsync();
+        try
+        {
+            return await context.Clinics.FindAsync(id);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while getting clinic with id {ClinicId}", id);
+            throw;
+        }
     }
 
-    public async Task<Clinic> GetClinicByIdAsync(int id)
+    public async Task<Clinic?> AddClinicAsync(Clinic? clinic)
     {
-        return await _context.Clinics.FindAsync(id);
-    }
-
-    public async Task<Clinic> AddClinicAsync(Clinic clinic)
-    {
-        _context.Clinics.Add(clinic);
-        await _context.SaveChangesAsync();
-        return clinic;
+        try
+        {
+            context.Clinics.Add(clinic);
+            await context.SaveChangesAsync();
+            return clinic;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while adding a new clinic");
+            throw;
+        }
     }
 
     public async Task UpdateClinicAsync(Clinic clinic)
     {
-        _context.Entry(clinic).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
+        try
+        {
+            context.Entry(clinic).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while updating clinic with id {ClinicId}", clinic.ClinicId);
+            throw;
+        }
     }
 
-    public async Task DeleteClinicAsync(int id)
+    public async Task DeleteClinicAsync(long id)
     {
-        var clinic = await _context.Clinics.FindAsync(id);
-        if (clinic != null)
+        try
         {
-            _context.Clinics.Remove(clinic);
-            await _context.SaveChangesAsync();
+            var clinic = await context.Clinics.FindAsync(id);
+            if (clinic != null)
+            {
+                context.Clinics.Remove(clinic);
+                await context.SaveChangesAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while deleting clinic with id {ClinicId}", id);
+            throw;
         }
     }
 }

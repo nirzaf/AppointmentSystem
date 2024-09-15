@@ -1,3 +1,4 @@
+global using ILogger = Serilog.ILogger;
 using Microsoft.EntityFrameworkCore;
 using AppointmentSystem.Data;
 using AppointmentSystem.Repositories;

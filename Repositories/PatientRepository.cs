@@ -5,45 +5,78 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AppointmentSystem.Repositories;
 
-public class PatientRepository : IPatientRepository
+public class PatientRepository(ClinicDbContext context, ILogger<PatientRepository> logger) : IPatientRepository
 {
-    private readonly ClinicDbContext _context;
-
-    public PatientRepository(ClinicDbContext context)
-    {
-        _context = context;
-    }
-
     public async Task<IEnumerable<Patient>> GetAllPatientsAsync()
     {
-        return await _context.Patients.ToListAsync();
+        try
+        {
+            return await context.Patients.ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while getting all patients");
+            throw;
+        }
     }
 
-    public async Task<Patient> GetPatientByIdAsync(int id)
+    public async Task<Patient?> GetPatientByIdAsync(long id)
     {
-        return await _context.Patients.FindAsync(id);
+        try
+        {
+            return await context.Patients.FindAsync(id);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while getting patient with id {PatientId}", id);
+            throw;
+        }
     }
 
     public async Task<Patient> AddPatientAsync(Patient patient)
     {
-        _context.Patients.Add(patient);
-        await _context.SaveChangesAsync();
-        return patient;
+        try
+        {
+            context.Patients.Add(patient);
+            await context.SaveChangesAsync();
+            return patient;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while adding a new patient");
+            throw;
+        }
     }
 
     public async Task UpdatePatientAsync(Patient patient)
     {
-        _context.Entry(patient).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
+        try
+        {
+            context.Entry(patient).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while updating patient with id {PatientId}", patient.PatientId);
+            throw;
+        }
     }
 
-    public async Task DeletePatientAsync(int id)
+    public async Task DeletePatientAsync(long id)
     {
-        var patient = await _context.Patients.FindAsync(id);
-        if (patient != null)
+        try
         {
-            _context.Patients.Remove(patient);
-            await _context.SaveChangesAsync();
+            var patient = await context.Patients.FindAsync(id);
+            if (patient != null)
+            {
+                context.Patients.Remove(patient);
+                await context.SaveChangesAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "An error occurred while deleting patient with id {PatientId}", id);
+            throw;
         }
     }
 }

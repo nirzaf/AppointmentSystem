@@ -3,14 +3,12 @@ using AppointmentSystem.Models;
 
 namespace AppointmentSystem.Data;
 
-public class ClinicDbContext : DbContext
+public class ClinicDbContext(DbContextOptions<ClinicDbContext> options) : DbContext(options)
 {
-    public ClinicDbContext(DbContextOptions<ClinicDbContext> options) : base(options) { }
-
     public DbSet<Patient> Patients { get; set; }
     public DbSet<Doctor> Doctors { get; set; }
-    public DbSet<Clinic> Clinics { get; set; }
-    public DbSet<Appointment> Appointments { get; set; }
+    public DbSet<Clinic?> Clinics { get; set; }
+    public DbSet<Appointment?> Appointments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

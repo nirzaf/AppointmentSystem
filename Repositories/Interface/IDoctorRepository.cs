@@ -5,8 +5,8 @@ namespace AppointmentSystem.Repositories.Interface;
 public interface IDoctorRepository
 {
     Task<IEnumerable<Doctor>> GetAllDoctorsAsync();
-    Task<Doctor> GetDoctorByIdAsync(int id);
+    Task<Doctor?> GetDoctorByIdAsync(long id);
     Task<Doctor> AddDoctorAsync(Doctor doctor);
     Task UpdateDoctorAsync(Doctor doctor);
-    Task DeleteDoctorAsync(int id);
+    Task DeleteDoctorAsync(long id);
 }
