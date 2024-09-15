@@ -7,8 +7,8 @@ public class ClinicDbContext(DbContextOptions<ClinicDbContext> options) : DbCont
 {
     public DbSet<Patient> Patients { get; set; }
     public DbSet<Doctor> Doctors { get; set; }
-    public DbSet<Clinic?> Clinics { get; set; }
-    public DbSet<Appointment?> Appointments { get; set; }
+    public DbSet<Clinic> Clinics { get; set; }
+    public DbSet<Appointment> Appointments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

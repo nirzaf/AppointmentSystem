@@ -4,7 +4,7 @@ namespace AppointmentSystem.Repositories.Interface;
 
 public interface IAppointmentRepository
 {
-    Task<List<Appointment?>> GetAllAppointmentsAsync();
+    Task<IEnumerable<Appointment?>> GetAllAppointmentsAsync();
     Task<Appointment?> GetAppointmentByIdAsync(long id);
     Task<Appointment?> CreateAppointmentAsync(Appointment? appointment);
     Task<Appointment?> UpdateAppointmentAsync(Appointment appointment);

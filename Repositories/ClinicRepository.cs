@@ -37,8 +37,11 @@ public class ClinicRepository(ClinicDbContext context, ILogger<ClinicRepository>
     {
         try
         {
-            context.Clinics.Add(clinic);
-            await context.SaveChangesAsync();
+            if (clinic != null)
+            {
+                context.Clinics.Add(clinic);
+                await context.SaveChangesAsync();
+            }
             return clinic;
         }
         catch (Exception ex)

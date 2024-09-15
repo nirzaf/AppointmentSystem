@@ -9,15 +9,15 @@ public class Appointment
 
     [Required]
     public long PatientId { get; set; }
-    public Patient Patient { get; set; }
+    public Patient? Patient { get; set; }
 
     [Required]
     public long DoctorId { get; set; }
-    public Doctor Doctor { get; set; }
+    public required Doctor Doctor { get; set; }
 
     [Required]
     public long ClinicId { get; set; }
-    public Clinic Clinic { get; set; }
+    public required Clinic Clinic { get; set; }
 
     [Required]
     [DataType(DataType.Date)]

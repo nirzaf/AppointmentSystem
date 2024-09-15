@@ -4,16 +4,19 @@ namespace AppointmentSystem.Models;
 
 public class Patient
 {
+    public Patient()
+    {
+        Appointments = new List<Appointment>();
+    }
+
     [Key]
     public long PatientId { get; set; }
 
-    [Required]
     [StringLength(50)]
-    public string FirstName { get; set; }
+    public required string FirstName { get; set; }
 
-    [Required]
     [StringLength(50)]
-    public string LastName { get; set; }
+    public required string LastName { get; set; }
 
     [DataType(DataType.Date)]
     public DateTime DateOfBirth { get; set; }
@@ -41,3 +44,4 @@ public enum Gender
     Female,
     Other
 }
+

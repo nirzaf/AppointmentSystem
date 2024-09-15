@@ -6,6 +6,7 @@ namespace AppointmentSystem.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+
 public class ClinicController(IClinicRepository clinicRepository, ILogger logger) : ControllerBase
 {
     [HttpGet]
@@ -36,8 +37,8 @@ public class ClinicController(IClinicRepository clinicRepository, ILogger logger
     {
         logger.Information("Creating new clinic: {@Clinic}", clinic);
         var createdClinic = await clinicRepository.AddClinicAsync(clinic);
-        logger.Information("Created new clinic with id: {ClinicId}", createdClinic.ClinicId);
-        return CreatedAtAction(nameof(GetClinicById), new { id = createdClinic.ClinicId }, createdClinic);
+        logger.Information("Created new clinic with id: {ClinicId}", createdClinic?.ClinicId);
+        return CreatedAtAction(nameof(GetClinicById), new { id = createdClinic?.ClinicId }, createdClinic);
     }
 
     [HttpPut("{id}")]

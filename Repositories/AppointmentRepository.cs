@@ -8,7 +8,7 @@ namespace AppointmentSystem.Repositories;
 public class AppointmentRepository(ClinicDbContext context, ILogger<AppointmentRepository> logger)
     : IAppointmentRepository
 {
-    public async Task<List<Appointment?>> GetAllAppointmentsAsync()
+    public async Task<IEnumerable<Appointment?>> GetAllAppointmentsAsync()
     {
         try
         {
@@ -38,9 +38,13 @@ public class AppointmentRepository(ClinicDbContext context, ILogger<AppointmentR
     {
         try
         {
-            context.Appointments.Add(appointment);
-            await context.SaveChangesAsync();
-            return appointment;
+            if (appointment != null)
+            {
+                context.Appointments.Add(appointment);
+                await context.SaveChangesAsync();
+                return appointment;
+            }
+            return null;
         }
         catch (Exception ex)
         {
