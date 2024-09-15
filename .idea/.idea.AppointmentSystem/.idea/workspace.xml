@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8070862a-266b-4920-9ae5-1887f6f12786" name="Changes" comment="feat: move repositories to implementation folder">
+    <list default="true" id="8070862a-266b-4920-9ae5-1887f6f12786" name="Changes" comment="feat: Add Cody history configuration&#10;&#10;This commit introduces a configuration file for Cody history, &#10;which will be used to store and manage code interactions. &#10;This will enhance the developer experience by providing &#10;contextual assistance based on past code changes. (master)">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AppointmentSystem/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AppointmentSystem/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AppointmentSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AppointmentSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/AppointmentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/AppointmentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/ClinicController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/ClinicController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/DoctorsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/DoctorsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/PatientController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/PatientController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppointmentSystem.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AppointmentSystem.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppointmentSystem.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/AppointmentSystem.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClinicDb.db-shm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClinicDb.db-wal" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/Implementation/AppointmentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Implementation/AppointmentRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/Interface/IAppointmentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/Interface/IAppointmentRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,61 +25,63 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "nirzaf"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nirzaf&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/nirzaf/AppointmentSystem.git",
-    "accountId": "5ed92374-9d5c-4123-b852-5f0a5c3534cf"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/nirzaf/AppointmentSystem.git&quot;,
+    &quot;accountId&quot;: &quot;5ed92374-9d5c-4123-b852-5f0a5c3534cf&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2c849bef1d604c4681d9f29ab108940a6600/15/c790c440/LoggerConfigurationSQLiteExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1754eef3f581b3d8c062eff8f8904d7339abbba16aa2a649c5bb8e7fd69b24b0/DbConnectionStringBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bfdd4a3d5ba5ce4354663c1f7a4f53879b8ef4bf2d7aa612d24c74965/LoggerConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="Toolset" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2m6wvXo9FEk3hLqJi5AuvX1pOE6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.AppointmentSystem: IIS Express.executor": "Debug",
-    "HTTP Request.All in AppointmentSystem.executor": "Run",
-    "RunOnceActivity.CodyAccountHistoryMigration": "true",
-    "RunOnceActivity.CodyAccountsIdsRefresh": "true",
-    "RunOnceActivity.CodyAssignOrphanedChatsToActiveAccount": "true",
-    "RunOnceActivity.CodyConvertUrlToCodebaseName": "true",
-    "RunOnceActivity.CodyHistoryLlmMigration": "true",
-    "RunOnceActivity.CodyMigrateChatHistory-v2": "true",
-    "RunOnceActivity.CodyProjectSettingsMigration": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.ToggleCodyToolWindowAfterMigration": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.AppointmentSystem: IIS Express.executor&quot;: &quot;Debug&quot;,
+    &quot;HTTP Request.All in AppointmentSystem.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.CodyAccountHistoryMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyAccountsIdsRefresh&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyAssignOrphanedChatsToActiveAccount&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyConvertUrlToCodebaseName&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyHistoryLlmMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyMigrateChatHistory-v2&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyProjectSettingsMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ToggleCodyToolWindowAfterMigration&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.AppointmentSystem: IIS Express">
     <configuration name="All in AppointmentSystem" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/AppointmentSystem.http">
       <method v="2" />
@@ -143,7 +145,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726410570576</updated>
-      <workItem from="1726410570580" duration="1606000" />
+      <workItem from="1726410570580" duration="1870000" />
+      <workItem from="1726418134686" duration="2596000" />
     </task>
     <task id="LOCAL-00001" summary="feat(build): update web.config to remove handlers and locations for .NET Framework 4.7.2 and earlier versions">
       <option name="closed" value="true" />
@@ -185,7 +188,23 @@
       <option name="project" value="LOCAL" />
       <updated>1726411509688</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: Add pagination to API controllers (master)&#10;&#10;Added pagination support to the Clinic, Patient, Doctor, and&#10;Appointment controllers to improve performance and user experience.&#10;&#10;The following changes were made:&#10;&#10;- Added `skip` and `take` parameters to the `GetAll` methods of each&#10;  controller.&#10;- Updated the corresponding repository methods to support pagination.&#10;- Updated the logging messages to include pagination information.&#10;- Added error handling to the `GetAllAppointmentsAsync` method in the&#10;  `AppointmentRepository`.&#10;- Added a response cache attribute to the `GetAppointmentById` method in&#10;  the `AppointmentController`.">
+      <option name="closed" value="true" />
+      <created>1726412426559</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726412426559</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: Add Cody history configuration&#10;&#10;This commit introduces a configuration file for Cody history, &#10;which will be used to store and manage code interactions. &#10;This will enhance the developer experience by providing &#10;contextual assistance based on past code changes. (master)">
+      <option name="closed" value="true" />
+      <created>1726412445922</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726412445922</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +217,8 @@
     <MESSAGE value="feat: added launch profiles for IIS Express, http, and https" />
     <MESSAGE value="feat: Update target framework and CORS policy" />
     <MESSAGE value="feat: move repositories to implementation folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: move repositories to implementation folder" />
+    <MESSAGE value="feat: Add pagination to API controllers (master)&#10;&#10;Added pagination support to the Clinic, Patient, Doctor, and&#10;Appointment controllers to improve performance and user experience.&#10;&#10;The following changes were made:&#10;&#10;- Added `skip` and `take` parameters to the `GetAll` methods of each&#10;  controller.&#10;- Updated the corresponding repository methods to support pagination.&#10;- Updated the logging messages to include pagination information.&#10;- Added error handling to the `GetAllAppointmentsAsync` method in the&#10;  `AppointmentRepository`.&#10;- Added a response cache attribute to the `GetAppointmentById` method in&#10;  the `AppointmentController`." />
+    <MESSAGE value="feat: Add Cody history configuration&#10;&#10;This commit introduces a configuration file for Cody history, &#10;which will be used to store and manage code interactions. &#10;This will enhance the developer experience by providing &#10;contextual assistance based on past code changes. (master)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Add Cody history configuration&#10;&#10;This commit introduces a configuration file for Cody history, &#10;which will be used to store and manage code interactions. &#10;This will enhance the developer experience by providing &#10;contextual assistance based on past code changes. (master)" />
   </component>
 </project>

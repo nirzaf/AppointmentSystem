@@ -3,6 +3,7 @@ using AppointmentSystem.Data;
 using AppointmentSystem.Repositories.Implementation;
 using AppointmentSystem.Repositories.Interface;
 using Serilog;
+using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +12,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // Configure Serilog
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
-    .WriteTo.SQLite(connectionString, tableName: "Logs")
-    .MinimumLevel.Information()
+    .WriteTo.SQLite("Data Source=ClinicLogs.db", tableName: "Logs")
+    .MinimumLevel.Verbose()
     .Enrich.FromLogContext()
     .Enrich.WithProperty("Application", "AppointmentSystem")
     .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName)
@@ -22,13 +23,14 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateLogger();
 
+Log.Information("Application started");
+
 builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddDbContext<ClinicDbContext>(options =>
     options.UseSqlite(connectionString));
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
