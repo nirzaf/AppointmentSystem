@@ -1,7 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{}</component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8070862a-266b-4920-9ae5-1887f6f12786" name="Changes" comment="feat: added launch profiles for IIS Express, http, and https">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.AppointmentSystem/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AppointmentSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AppointmentSystem/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClinicDb.db" beforeDir="false" afterPath="$PROJECT_DIR$/ClinicDb.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClinicDb.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/ClinicDb.db-shm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClinicDb.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/ClinicDb.db-wal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/global.json" beforeDir="false" afterPath="$PROJECT_DIR$/global.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "nirzaf"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/nirzaf/AppointmentSystem.git",
+    "accountId": "5ed92374-9d5c-4123-b852-5f0a5c3534cf"
+  }
+}]]></component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2m6wvXo9FEk3hLqJi5AuvX1pOE6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.AppointmentSystem: IIS Express.executor": "Debug",
+    "RunOnceActivity.CodyAccountHistoryMigration": "true",
+    "RunOnceActivity.CodyAccountsIdsRefresh": "true",
+    "RunOnceActivity.CodyAssignOrphanedChatsToActiveAccount": "true",
+    "RunOnceActivity.CodyConvertUrlToCodebaseName": "true",
+    "RunOnceActivity.CodyHistoryLlmMigration": "true",
+    "RunOnceActivity.CodyMigrateChatHistory-v2": "true",
+    "RunOnceActivity.CodyProjectSettingsMigration": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.ToggleCodyToolWindowAfterMigration": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
+  }
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.AppointmentSystem: IIS Express">
+    <configuration name="All in AppointmentSystem" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/AppointmentSystem.http">
+      <method v="2" />
+    </configuration>
     <configuration name="AppointmentSystem: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/AppointmentSystem.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -47,5 +117,49 @@
         <option name="Build" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.All in AppointmentSystem" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8070862a-266b-4920-9ae5-1887f6f12786" name="Changes" comment="" />
+      <created>1726410570576</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1726410570576</updated>
+      <workItem from="1726410570580" duration="397000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat(build): update web.config to remove handlers and locations for .NET Framework 4.7.2 and earlier versions">
+      <option name="closed" value="true" />
+      <created>1726410732062</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1726410732062</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: added launch profiles for IIS Express, http, and https">
+      <option name="closed" value="true" />
+      <created>1726410756923</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726410756923</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat(build): update web.config to remove handlers and locations for .NET Framework 4.7.2 and earlier versions" />
+    <MESSAGE value="feat: added launch profiles for IIS Express, http, and https" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added launch profiles for IIS Express, http, and https" />
   </component>
 </project>
