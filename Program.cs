@@ -18,6 +18,8 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 builder.Host.UseSerilog();
 
+builder.Services.AddSingleton(Log.Logger);
+
 // Add services to the container.
 builder.Services.AddDbContext<ClinicDbContext>(options =>
     options.UseSqlite(connectionString));
@@ -57,8 +59,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAllOrigins");
+app.UseAuthorization();
+app.MapControllers();
 
 app.Run();
 
 // Ensure to flush and close the log when the application shuts down
-Log.CloseAndFlush();Log.CloseAndFlush();app.Run();
+Log.CloseAndFlush();
+
+

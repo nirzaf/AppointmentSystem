@@ -7,7 +7,7 @@ namespace AppointmentSystem.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 public class AppointmentController(IAppointmentRepository appointmentRepository, ILogger logger)
-    : ControllerBase
+    : Controller
 {
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Appointment>>> GetAllAppointments()
@@ -37,8 +37,8 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
     {
         logger.Information("Creating new appointment");
         var createdAppointment = await appointmentRepository.CreateAppointmentAsync(appointment);
-        logger.Information("Created appointment with id: {Id}", createdAppointment.AppointmentId);
-        return CreatedAtAction(nameof(GetAppointmentById), new { id = createdAppointment.AppointmentId }, createdAppointment);
+        logger.Information("Created appointment with id: {Id}", createdAppointment?.AppointmentId);
+        return CreatedAtAction(nameof(GetAppointmentById), new { id = createdAppointment?.AppointmentId }, createdAppointment);
     }
 
     [HttpPut("{id:long}")]

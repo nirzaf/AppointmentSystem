@@ -1,6 +1,25 @@
-@AppointmentSystem_HostAddress = http://localhost:5274
+@baseUrl = http://localhost:5000/api
 
-GET {{AppointmentSystem_HostAddress}}/weatherforecast/
-Accept: application/json
+### Get all appointments
+GET {{baseUrl}}/appointment
 
-###
+### Get appointment by id
+GET {{baseUrl}}/appointment/1
+
+### Get all clinics
+GET {{baseUrl}}/clinic
+
+### Get clinic by id
+GET {{baseUrl}}/clinic/1
+
+### Get all doctors
+GET {{baseUrl}}/doctors
+
+### Get doctor by id
+GET {{baseUrl}}/doctors/1
+
+### Get all patients
+GET {{baseUrl}}/patient
+
+### Get patient by id
+GET {{baseUrl}}/patient/1
