@@ -112,6 +112,42 @@ namespace AppointmentSystem.Migrations
                     b.ToTable("Doctors");
                 });
 
+            modelBuilder.Entity("AppointmentSystem.Models.LogEntry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Exception")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Level")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Level");
+
+                    b.Property<string>("LogEvent")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("LogEvent");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MessageTemplate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Properties")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Properties");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime")
+                        .HasColumnName("TimeStamp");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs", (string)null);
+                });
+
             modelBuilder.Entity("AppointmentSystem.Models.Patient", b =>
                 {
                     b.Property<long>("PatientId")

@@ -12,8 +12,6 @@ public static class SeedInitialData
             return; // Database has been seeded
         }
 
-        var faker = new Faker();
-
         // Seed Clinics
         var clinics = new Faker<Clinic>()
             .RuleFor(c => c.Name, f => f.Company.CompanyName())

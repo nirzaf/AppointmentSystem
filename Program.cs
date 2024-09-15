@@ -1,4 +1,3 @@
-global using ILogger = Serilog.ILogger;
 using Microsoft.EntityFrameworkCore;
 using AppointmentSystem.Data;
 using AppointmentSystem.Repositories;
@@ -11,14 +10,19 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 // Configure Serilog
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.SQLite(
-        connectionString,
-        tableName: "Logs",
-        restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information)
+    .ReadFrom.Configuration(builder.Configuration)
+    .WriteTo.SQLite(connectionString, tableName: "Logs")
+    .MinimumLevel.Information()
+    .Enrich.FromLogContext()
+    .Enrich.WithProperty("Application", "AppointmentSystem")
+    .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName)
+    .Enrich.WithProperty("MachineName", Environment.MachineName)
+    .Enrich.WithProperty("UserName", Environment.UserName)
+    .Enrich.WithProperty("ProcessId", Environment.ProcessId)
+    .WriteTo.Console()
     .CreateLogger();
-builder.Host.UseSerilog();
 
-builder.Services.AddSingleton(Log.Logger);
+builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddDbContext<ClinicDbContext>(options =>
@@ -67,5 +71,3 @@ app.Run();
 
 // Ensure to flush and close the log when the application shuts down
 Log.CloseAndFlush();
-
-

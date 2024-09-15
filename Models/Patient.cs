@@ -4,11 +4,6 @@ namespace AppointmentSystem.Models;
 
 public class Patient
 {
-    public Patient()
-    {
-        Appointments = new List<Appointment>();
-    }
-
     [Key]
     public long PatientId { get; set; }
 
@@ -35,7 +30,7 @@ public class Patient
     [StringLength(200)]
     public string? Address { get; set; }
 
-    public ICollection<Appointment> Appointments { get; set; }
+    public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 }
 
 public enum Gender

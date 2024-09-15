@@ -1,13 +1,13 @@
-using Microsoft.EntityFrameworkCore;
 using AppointmentSystem.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppointmentSystem.Data;
 
 public class ClinicDbContext(DbContextOptions<ClinicDbContext> options) : DbContext(options)
 {
-    public DbSet<Patient> Patients { get; set; }
-    public DbSet<Doctor> Doctors { get; set; }
     public DbSet<Clinic> Clinics { get; set; }
+    public DbSet<Doctor> Doctors { get; set; }
+    public DbSet<Patient> Patients { get; set; }
     public DbSet<Appointment> Appointments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,6 +40,6 @@ public class ClinicDbContext(DbContextOptions<ClinicDbContext> options) : DbCont
         modelBuilder.Entity<Doctor>()
             .HasMany(d => d.Appointments)
             .WithOne(a => a.Doctor)
-            .HasForeignKey(a => a.DoctorId);    
+            .HasForeignKey(a => a.DoctorId);
     }
 }
