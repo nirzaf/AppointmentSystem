@@ -41,7 +41,7 @@ builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins", builder => { builder.AllowAnyOrigin(); });
+    options.AddPolicy("AllowAllOrigins", c => { c.AllowAnyOrigin(); });
 });
 
 var app = builder.Build();
