@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AppointmentSystem.Models;
 using AppointmentSystem.Repositories.Interface;
+using AppointmentSystem.Services;
 
 namespace AppointmentSystem.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AppointmentController(IAppointmentRepository appointmentRepository, ILogger<AppointmentController> logger)
+public class AppointmentController(IAppointmentRepository appointmentRepository, ILogger<AppointmentController> logger, ISmsService smsService)
     : ControllerBase
 {
     [HttpGet]
@@ -50,6 +51,12 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
         logger.LogInformation("Creating new appointment");
         var createdAppointment = await appointmentRepository.CreateAppointmentAsync(appointment);
         logger.LogInformation("Created appointment with id: {Id}", createdAppointment?.AppointmentId);
+
+        if (createdAppointment != null && createdAppointment.Status == AppointmentStatus.Confirmed)
+        {
+            await smsService.SendSmsAsync(createdAppointment.Patient?.PhoneNumber, "Your appointment has been confirmed.");
+        }
+
         return CreatedAtAction(nameof(GetAppointmentById), new { id = createdAppointment?.AppointmentId }, createdAppointment);
     }
 
@@ -68,6 +75,11 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
         {
             logger.LogWarning("Appointment with id: {Id} not found for update", id);
             return NotFound();
+        }
+
+        if (updatedAppointment.Status == AppointmentStatus.Confirmed)
+        {
+            await smsService.SendSmsAsync(updatedAppointment.Patient?.PhoneNumber, "Your appointment has been confirmed.");
         }
 
         logger.LogInformation("Updated appointment with id: {Id}", id);

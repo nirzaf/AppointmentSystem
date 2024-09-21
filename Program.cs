@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using AppointmentSystem.Data;
 using AppointmentSystem.Repositories.Implementation;
 using AppointmentSystem.Repositories.Interface;
+using AppointmentSystem.Services;
 using Serilog;
 using Serilog.Events;
 
@@ -40,6 +41,7 @@ builder.Services.AddScoped<IClinicRepository, ClinicRepository>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+builder.Services.AddScoped<ISmsService, SmsService>();
 
 builder.Services.AddCors(options =>
 {
