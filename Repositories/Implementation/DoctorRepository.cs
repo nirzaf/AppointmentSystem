@@ -10,20 +10,6 @@ namespace AppointmentSystem.Repositories.Implementation;
 /// </summary>
 public class DoctorRepository(ClinicDbContext context, ILogger<DoctorRepository> logger) : IDoctorRepository
 {
-    private readonly ClinicDbContext context;
-    private readonly ILogger<DoctorRepository> logger;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="DoctorRepository"/> class.
-    /// </summary>
-    /// <param name="context">The database context to be used for data access.</param>
-    /// <param name="logger">The logger to be used for logging information and errors.</param>
-    public DoctorRepository(ClinicDbContext context, ILogger<DoctorRepository> logger)
-    {
-        this.context = context;
-        this.logger = logger;
-    }
-
     /// <summary>
     /// Retrieves a list of doctors with optional pagination.
     /// </summary>

@@ -11,19 +11,6 @@ namespace AppointmentSystem.Repositories.Implementation;
 public class AppointmentRepository(ClinicDbContext context, ILogger<AppointmentRepository> logger)
     : IAppointmentRepository
 {
-    private readonly ClinicDbContext context;
-    private readonly ILogger<AppointmentRepository> logger;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="AppointmentRepository"/> class.
-    /// </summary>
-    /// <param name="context">The database context to be used for data access.</param>
-    /// <param name="logger">The logger to be used for logging information and errors.</param>
-    public AppointmentRepository(ClinicDbContext context, ILogger<AppointmentRepository> logger)
-    {
-        this.context = context;
-        this.logger = logger;
-    }
 
     /// <summary>
     /// Retrieves a list of appointments with optional pagination.
