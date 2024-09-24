@@ -18,9 +18,16 @@ public class ClinicController(IClinicRepository clinicRepository, ILogger<Clinic
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Clinic>>> GetAllClinics([FromQuery] int skip = 0, [FromQuery] int take = 10)
     {
+        // Log the request for getting clinics with pagination
         logger.LogInformation("Getting clinics with pagination: Skip {Skip}, Take {Take}", skip, take);
+        
+        // Fetch clinics from the repository with pagination
         var clinics = await clinicRepository.GetAllClinicsAsync(skip, take);
+        
+        // Log the number of clinics retrieved
         logger.LogInformation("Retrieved {Count} clinics", clinics.Count());
+        
+        // Return the list of clinics
         return Ok(clinics);
     }
 
@@ -32,14 +39,23 @@ public class ClinicController(IClinicRepository clinicRepository, ILogger<Clinic
     [HttpGet("{id:long}")]
     public async Task<ActionResult<Clinic?>> GetClinicById(long id)
     {
+        // Log the request for getting a clinic by ID
         logger.LogInformation("Getting clinic with id: {ClinicId}", id);
+        
+        // Fetch the clinic from the repository by ID
         var clinic = await clinicRepository.GetClinicByIdAsync(id);
+        
         if (clinic == null)
         {
+            // Log a warning if the clinic is not found
             logger.LogWarning("Clinic with id: {ClinicId} not found", id);
             return NotFound();
         }
+        
+        // Log the retrieved clinic details
         logger.LogInformation("Retrieved clinic: {@Clinic}", clinic);
+        
+        // Return the clinic details
         return Ok(clinic);
     }
 
@@ -51,9 +67,16 @@ public class ClinicController(IClinicRepository clinicRepository, ILogger<Clinic
     [HttpPost]
     public async Task<ActionResult<Clinic?>> CreateClinic(Clinic? clinic)
     {
+        // Log the request for creating a new clinic
         logger.LogInformation("Creating new clinic: {@Clinic}", clinic);
+        
+        // Add the new clinic to the repository
         var createdClinic = await clinicRepository.AddClinicAsync(clinic);
+        
+        // Log the ID of the created clinic
         logger.LogInformation("Created new clinic with id: {ClinicId}", createdClinic?.ClinicId);
+        
+        // Return the created clinic details
         return CreatedAtAction(nameof(GetClinicById), new { id = createdClinic?.ClinicId }, createdClinic);
     }
 
@@ -68,13 +91,21 @@ public class ClinicController(IClinicRepository clinicRepository, ILogger<Clinic
     {
         if (id != clinic.ClinicId)
         {
+            // Log a warning if the provided ID does not match the clinic ID
             logger.LogWarning("Mismatched clinic id. Provided: {ProvidedId}, Actual: {ActualId}", id, clinic.ClinicId);
             return BadRequest();
         }
 
+        // Log the request for updating a clinic
         logger.LogInformation("Updating clinic: {@Clinic}", clinic);
+        
+        // Update the clinic in the repository
         await clinicRepository.UpdateClinicAsync(clinic);
+        
+        // Log the ID of the updated clinic
         logger.LogInformation("Updated clinic with id: {ClinicId}", id);
+        
+        // Return no content to indicate a successful update
         return NoContent();
     }
 
@@ -86,9 +117,16 @@ public class ClinicController(IClinicRepository clinicRepository, ILogger<Clinic
     [HttpDelete("{id:long}")]
     public async Task<IActionResult> DeleteClinic(long id)
     {
+        // Log the request for deleting a clinic
         logger.LogInformation("Deleting clinic with id: {ClinicId}", id);
+        
+        // Delete the clinic from the repository by ID
         await clinicRepository.DeleteClinicAsync(id);
+        
+        // Log the ID of the deleted clinic
         logger.LogInformation("Deleted clinic with id: {ClinicId}", id);
+        
+        // Return no content to indicate a successful deletion
         return NoContent();
     }
 }

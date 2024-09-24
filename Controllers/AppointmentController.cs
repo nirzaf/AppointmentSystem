@@ -21,6 +21,7 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
         logger.LogInformation("Getting appointments with skip: {Skip}, take: {Take}", skip, take);
         try
         {
+            // Fetches appointments from the repository with pagination
             var appointments = await appointmentRepository.GetAllAppointmentsAsync(skip, take);
             logger.LogInformation("Retrieved {Count} appointments", appointments.Count());
             return Ok(appointments);
@@ -43,6 +44,7 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
     {
         logger.LogInformation("Getting appointment with id: {Id}", id);
         
+        // Fetches the appointment from the repository by ID
         var appointment = await appointmentRepository.GetAppointmentByIdAsync(id);
         
         if (appointment == null)
@@ -64,6 +66,8 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
     public async Task<ActionResult<Appointment?>> CreateAppointment(Appointment? appointment)
     {
         logger.LogInformation("Creating new appointment");
+        
+        // Adds the new appointment to the repository
         var createdAppointment = await appointmentRepository.CreateAppointmentAsync(appointment);
         logger.LogInformation("Created appointment with id: {Id}", createdAppointment?.AppointmentId);
         return CreatedAtAction(nameof(GetAppointmentById), new { id = createdAppointment?.AppointmentId }, createdAppointment);
@@ -85,6 +89,7 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
             return BadRequest();
         }
 
+        // Updates the appointment in the repository
         var updatedAppointment = await appointmentRepository.UpdateAppointmentAsync(appointment);
         if (updatedAppointment == null)
         {
@@ -105,6 +110,8 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
     public async Task<IActionResult> DeleteAppointment(long id)
     {
         logger.LogInformation("Deleting appointment with id: {Id}", id);
+        
+        // Deletes the appointment from the repository by ID
         await appointmentRepository.DeleteAppointmentAsync(id);
         logger.LogInformation("Deleted appointment with id: {Id}", id);
         return NoContent();
