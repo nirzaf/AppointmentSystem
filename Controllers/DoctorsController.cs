@@ -9,6 +9,12 @@ namespace AppointmentSystem.Controllers;
 public class DoctorsController(IDoctorRepository doctorRepository, ILogger<DoctorsController> logger)
     : ControllerBase
 {
+    /// <summary>
+    /// Retrieves a list of doctors with optional pagination.
+    /// </summary>
+    /// <param name="skip">Number of doctors to skip for pagination.</param>
+    /// <param name="take">Number of doctors to take for pagination.</param>
+    /// <returns>A list of doctors.</returns>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Doctor>>> GetAllDoctors([FromQuery] int skip = 0, [FromQuery] int take = 10)
     {
@@ -20,6 +26,11 @@ public class DoctorsController(IDoctorRepository doctorRepository, ILogger<Docto
         return Ok(result);
     }
 
+    /// <summary>
+    /// Retrieves a doctor by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the doctor to retrieve.</param>
+    /// <returns>The doctor with the specified ID.</returns>
     [HttpGet("{id:long}")]
     public async Task<ActionResult<Doctor?>> GetDoctorById(long id)
     {
@@ -34,6 +45,11 @@ public class DoctorsController(IDoctorRepository doctorRepository, ILogger<Docto
         return Ok(doctor);
     }
 
+    /// <summary>
+    /// Creates a new doctor.
+    /// </summary>
+    /// <param name="doctor">The doctor to create.</param>
+    /// <returns>The created doctor.</returns>
     [HttpPost]
     public async Task<ActionResult<Doctor>> CreateDoctor(Doctor doctor)
     {
@@ -43,6 +59,12 @@ public class DoctorsController(IDoctorRepository doctorRepository, ILogger<Docto
         return CreatedAtAction(nameof(GetDoctorById), new { id = createdDoctor.DoctorId }, createdDoctor);
     }
 
+    /// <summary>
+    /// Updates an existing doctor.
+    /// </summary>
+    /// <param name="id">The ID of the doctor to update.</param>
+    /// <param name="doctor">The updated doctor details.</param>
+    /// <returns>No content if the update is successful.</returns>
     [HttpPut("{id:long}")]
     public async Task<IActionResult> UpdateDoctor(long id, Doctor doctor)
     {
@@ -58,6 +80,11 @@ public class DoctorsController(IDoctorRepository doctorRepository, ILogger<Docto
         return NoContent();
     }
 
+    /// <summary>
+    /// Deletes a doctor by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the doctor to delete.</param>
+    /// <returns>No content if the deletion is successful.</returns>
     [HttpDelete("{id:long}")]
     public async Task<IActionResult> DeleteDoctor(long id)
     {

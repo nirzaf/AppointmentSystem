@@ -9,6 +9,12 @@ namespace AppointmentSystem.Controllers;
 public class AppointmentController(IAppointmentRepository appointmentRepository, ILogger<AppointmentController> logger)
     : ControllerBase
 {
+    /// <summary>
+    /// Retrieves a list of appointments with optional pagination.
+    /// </summary>
+    /// <param name="skip">Number of appointments to skip for pagination.</param>
+    /// <param name="take">Number of appointments to take for pagination.</param>
+    /// <returns>A list of appointments.</returns>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Appointment>>> GetAllAppointments(int skip = 0, int take = 100)
     {
@@ -26,6 +32,11 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
         }
     }
 
+    /// <summary>
+    /// Retrieves an appointment by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the appointment to retrieve.</param>
+    /// <returns>The appointment with the specified ID.</returns>
     [HttpGet("{id:long}")]
     [ResponseCache(Duration = 60, VaryByQueryKeys = ["id"])]
     public async Task<ActionResult<Appointment?>> GetAppointmentById(long id)
@@ -44,6 +55,11 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
         return Ok(appointment);
     }
 
+    /// <summary>
+    /// Creates a new appointment.
+    /// </summary>
+    /// <param name="appointment">The appointment to create.</param>
+    /// <returns>The created appointment.</returns>
     [HttpPost]
     public async Task<ActionResult<Appointment?>> CreateAppointment(Appointment? appointment)
     {
@@ -53,6 +69,12 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
         return CreatedAtAction(nameof(GetAppointmentById), new { id = createdAppointment?.AppointmentId }, createdAppointment);
     }
 
+    /// <summary>
+    /// Updates an existing appointment.
+    /// </summary>
+    /// <param name="id">The ID of the appointment to update.</param>
+    /// <param name="appointment">The updated appointment details.</param>
+    /// <returns>No content if the update is successful.</returns>
     [HttpPut("{id:long}")]
     public async Task<IActionResult> UpdateAppointment(long id, Appointment appointment)
     {
@@ -74,6 +96,11 @@ public class AppointmentController(IAppointmentRepository appointmentRepository,
         return NoContent();
     }
 
+    /// <summary>
+    /// Deletes an appointment by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the appointment to delete.</param>
+    /// <returns>No content if the deletion is successful.</returns>
     [HttpDelete("{id:long}")]
     public async Task<IActionResult> DeleteAppointment(long id)
     {

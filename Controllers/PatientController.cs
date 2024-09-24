@@ -9,6 +9,12 @@ namespace AppointmentSystem.Controllers;
 public class PatientController(IPatientRepository patientRepository, ILogger<PatientController> logger)
     : ControllerBase
 {
+    /// <summary>
+    /// Retrieves a list of patients with optional pagination.
+    /// </summary>
+    /// <param name="skip">Number of patients to skip for pagination.</param>
+    /// <param name="take">Number of patients to take for pagination.</param>
+    /// <returns>A list of patients.</returns>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Patient>>> GetAllPatients([FromQuery] int skip = 0, [FromQuery] int take = 10)
     {
@@ -20,6 +26,11 @@ public class PatientController(IPatientRepository patientRepository, ILogger<Pat
         return Ok(enumerable);
     }
 
+    /// <summary>
+    /// Retrieves a patient by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the patient to retrieve.</param>
+    /// <returns>The patient with the specified ID.</returns>
     [HttpGet("{id:long}")]
     public async Task<ActionResult<Patient?>> GetPatientById(long id)
     {
@@ -34,6 +45,11 @@ public class PatientController(IPatientRepository patientRepository, ILogger<Pat
         return Ok(patient);
     }
 
+    /// <summary>
+    /// Creates a new patient.
+    /// </summary>
+    /// <param name="patient">The patient to create.</param>
+    /// <returns>The created patient.</returns>
     [HttpPost]
     public async Task<ActionResult<Patient>> CreatePatient(Patient patient)
     {
@@ -43,6 +59,12 @@ public class PatientController(IPatientRepository patientRepository, ILogger<Pat
         return CreatedAtAction(nameof(GetPatientById), new { id = createdPatient.PatientId }, createdPatient);
     }
 
+    /// <summary>
+    /// Updates an existing patient.
+    /// </summary>
+    /// <param name="id">The ID of the patient to update.</param>
+    /// <param name="patient">The updated patient details.</param>
+    /// <returns>No content if the update is successful.</returns>
     [HttpPut("{id:long}")]
     public async Task<IActionResult> UpdatePatient(long id, Patient patient)
     {
@@ -58,6 +80,11 @@ public class PatientController(IPatientRepository patientRepository, ILogger<Pat
         return NoContent();
     }
 
+    /// <summary>
+    /// Deletes a patient by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the patient to delete.</param>
+    /// <returns>No content if the deletion is successful.</returns>
     [HttpDelete("{id:long}")]
     public async Task<IActionResult> DeletePatient(long id)
     {
