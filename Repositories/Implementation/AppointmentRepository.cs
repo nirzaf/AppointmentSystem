@@ -35,16 +35,24 @@ public class AppointmentRepository(ClinicDbContext context, ILogger<AppointmentR
     {
         try
         {
+            // Log the request for getting appointments with pagination
             logger.LogInformation("Getting appointments with skip: {Skip}, take: {Take}", skip, take);
+            
+            // Fetch appointments from the database with pagination
             var appointments = await context.Appointments
-                .Skip(skip)
-                .Take(take)
-                .ToListAsync();
+                .Skip(skip) // Skip the specified number of appointments
+                .Take(take) // Take the specified number of appointments
+                .ToListAsync(); // Convert the result to a list
+            
+            // Log the number of appointments retrieved
             logger.LogInformation("Retrieved {Count} appointments", appointments.Count());
+            
+            // Return the list of appointments
             return appointments;
         }
         catch (Exception ex)
         {
+            // Log the error if an exception occurs
             logger.LogError(ex, "An error occurred while getting appointments");
             throw;
         }
@@ -59,20 +67,29 @@ public class AppointmentRepository(ClinicDbContext context, ILogger<AppointmentR
     {
         try
         {
+            // Log the request for getting an appointment by ID
             logger.LogInformation("Getting appointment with id: {AppointmentId}", id);
+            
+            // Fetch the appointment from the database by ID
             var appointment = await context.Appointments.FindAsync(id);
+            
             if (appointment == null)
             {
+                // Log a warning if the appointment is not found
                 logger.LogWarning("Appointment with id: {AppointmentId} not found", id);
             }
             else
             {
+                // Log the retrieved appointment details
                 logger.LogInformation("Retrieved appointment with id: {AppointmentId}", id);
             }
+            
+            // Return the appointment details
             return appointment;
         }
         catch (Exception ex)
         {
+            // Log the error if an exception occurs
             logger.LogError(ex, "An error occurred while getting appointment with id {AppointmentId}", id);
             throw;
         }
@@ -89,16 +106,24 @@ public class AppointmentRepository(ClinicDbContext context, ILogger<AppointmentR
         {
             if (appointment != null)
             {
+                // Log the request for creating a new appointment
                 logger.LogInformation("Creating new appointment");
+                
+                // Add the new appointment to the database
                 context.Appointments.Add(appointment);
-                await context.SaveChangesAsync();
+                await context.SaveChangesAsync(); // Save the changes to the database
+                
+                // Log the ID of the created appointment
                 logger.LogInformation("Created appointment with id: {AppointmentId}", appointment.AppointmentId);
+                
+                // Return the created appointment details
                 return appointment;
             }
             return null;
         }
         catch (Exception ex)
         {
+            // Log the error if an exception occurs
             logger.LogError(ex, "An error occurred while creating an appointment");
             throw;
         }
@@ -113,14 +138,22 @@ public class AppointmentRepository(ClinicDbContext context, ILogger<AppointmentR
     {
         try
         {
+            // Log the request for updating an appointment
             logger.LogInformation("Updating appointment with id: {AppointmentId}", appointment.AppointmentId);
+            
+            // Mark the appointment entity as modified
             context.Entry(appointment).State = EntityState.Modified;
-            await context.SaveChangesAsync();
+            await context.SaveChangesAsync(); // Save the changes to the database
+            
+            // Log the ID of the updated appointment
             logger.LogInformation("Updated appointment with id: {AppointmentId}", appointment.AppointmentId);
+            
+            // Return the updated appointment details
             return appointment;
         }
         catch (Exception ex)
         {
+            // Log the error if an exception occurs
             logger.LogError(ex, "An error occurred while updating appointment with id {AppointmentId}", appointment.AppointmentId);
             throw;
         }
@@ -134,17 +167,25 @@ public class AppointmentRepository(ClinicDbContext context, ILogger<AppointmentR
     {
         try
         {
+            // Log the request for deleting an appointment
             logger.LogInformation("Deleting appointment with id: {AppointmentId}", id);
+            
+            // Fetch the appointment from the database by ID
             var appointment = await context.Appointments.FindAsync(id);
+            
             if (appointment != null)
             {
+                // Remove the appointment from the database
                 context.Appointments.Remove(appointment);
-                await context.SaveChangesAsync();
+                await context.SaveChangesAsync(); // Save the changes to the database
+                
+                // Log the ID of the deleted appointment
                 logger.LogInformation("Deleted appointment with id: {AppointmentId}", id);
             }
         }
         catch (Exception ex)
         {
+            // Log the error if an exception occurs
             logger.LogError(ex, "An error occurred while deleting appointment with id {AppointmentId}", id);
             throw;
         }

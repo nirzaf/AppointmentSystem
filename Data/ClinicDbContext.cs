@@ -33,38 +33,38 @@ public class ClinicDbContext(DbContextOptions<ClinicDbContext> options) : DbCont
     {
         // Configures the relationship between Appointment and Patient
         modelBuilder.Entity<Appointment>()
-            .HasOne(a => a.Patient)
-            .WithMany(p => p.Appointments)
-            .HasForeignKey(a => a.PatientId);
+            .HasOne(a => a.Patient) // Each appointment has one patient
+            .WithMany(p => p.Appointments) // Each patient can have many appointments
+            .HasForeignKey(a => a.PatientId); // Foreign key in Appointment table
 
         // Configures the relationship between Appointment and Doctor
         modelBuilder.Entity<Appointment>()
-            .HasOne(a => a.Doctor)
-            .WithMany(d => d.Appointments)
-            .HasForeignKey(a => a.DoctorId);
+            .HasOne(a => a.Doctor) // Each appointment has one doctor
+            .WithMany(d => d.Appointments) // Each doctor can have many appointments
+            .HasForeignKey(a => a.DoctorId); // Foreign key in Appointment table
 
         // Configures the relationship between Appointment and Clinic
         modelBuilder.Entity<Appointment>()
-            .HasOne(a => a.Clinic)
-            .WithMany(c => c.Appointments)
-            .HasForeignKey(a => a.ClinicId);
+            .HasOne(a => a.Clinic) // Each appointment has one clinic
+            .WithMany(c => c.Appointments) // Each clinic can have many appointments
+            .HasForeignKey(a => a.ClinicId); // Foreign key in Appointment table
         
         // Configures the relationship between Clinic and Appointments
         modelBuilder.Entity<Clinic>()
-            .HasMany(c => c.Appointments)
-            .WithOne(a => a.Clinic)
-            .HasForeignKey(a => a.ClinicId);
+            .HasMany(c => c.Appointments) // Each clinic can have many appointments
+            .WithOne(a => a.Clinic) // Each appointment has one clinic
+            .HasForeignKey(a => a.ClinicId); // Foreign key in Appointment table
 
         // Configures the relationship between Patient and Appointments
         modelBuilder.Entity<Patient>()
-            .HasMany(p => p.Appointments)
-            .WithOne(a => a.Patient)
-            .HasForeignKey(a => a.PatientId);
+            .HasMany(p => p.Appointments) // Each patient can have many appointments
+            .WithOne(a => a.Patient) // Each appointment has one patient
+            .HasForeignKey(a => a.PatientId); // Foreign key in Appointment table
 
         // Configures the relationship between Doctor and Appointments
         modelBuilder.Entity<Doctor>()
-            .HasMany(d => d.Appointments)
-            .WithOne(a => a.Doctor)
-            .HasForeignKey(a => a.DoctorId);
+            .HasMany(d => d.Appointments) // Each doctor can have many appointments
+            .WithOne(a => a.Doctor) // Each appointment has one doctor
+            .HasForeignKey(a => a.DoctorId); // Foreign key in Appointment table
     }
 }
