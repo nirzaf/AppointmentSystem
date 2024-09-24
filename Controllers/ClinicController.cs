@@ -9,6 +9,12 @@ namespace AppointmentSystem.Controllers;
 public class ClinicController(IClinicRepository clinicRepository, ILogger<ClinicController> logger)
     : ControllerBase
 {
+    /// <summary>
+    /// Retrieves a list of clinics with optional pagination.
+    /// </summary>
+    /// <param name="skip">Number of clinics to skip for pagination.</param>
+    /// <param name="take">Number of clinics to take for pagination.</param>
+    /// <returns>A list of clinics.</returns>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Clinic>>> GetAllClinics([FromQuery] int skip = 0, [FromQuery] int take = 10)
     {
@@ -18,6 +24,11 @@ public class ClinicController(IClinicRepository clinicRepository, ILogger<Clinic
         return Ok(clinics);
     }
 
+    /// <summary>
+    /// Retrieves a clinic by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the clinic to retrieve.</param>
+    /// <returns>The clinic with the specified ID.</returns>
     [HttpGet("{id:long}")]
     public async Task<ActionResult<Clinic?>> GetClinicById(long id)
     {
@@ -32,6 +43,11 @@ public class ClinicController(IClinicRepository clinicRepository, ILogger<Clinic
         return Ok(clinic);
     }
 
+    /// <summary>
+    /// Creates a new clinic.
+    /// </summary>
+    /// <param name="clinic">The clinic to create.</param>
+    /// <returns>The created clinic.</returns>
     [HttpPost]
     public async Task<ActionResult<Clinic?>> CreateClinic(Clinic? clinic)
     {
@@ -41,6 +57,12 @@ public class ClinicController(IClinicRepository clinicRepository, ILogger<Clinic
         return CreatedAtAction(nameof(GetClinicById), new { id = createdClinic?.ClinicId }, createdClinic);
     }
 
+    /// <summary>
+    /// Updates an existing clinic.
+    /// </summary>
+    /// <param name="id">The ID of the clinic to update.</param>
+    /// <param name="clinic">The updated clinic details.</param>
+    /// <returns>No content if the update is successful.</returns>
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateClinic(long id, Clinic clinic)
     {
@@ -56,6 +78,11 @@ public class ClinicController(IClinicRepository clinicRepository, ILogger<Clinic
         return NoContent();
     }
 
+    /// <summary>
+    /// Deletes a clinic by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the clinic to delete.</param>
+    /// <returns>No content if the deletion is successful.</returns>
     [HttpDelete("{id:long}")]
     public async Task<IActionResult> DeleteClinic(long id)
     {
